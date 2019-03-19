@@ -23,6 +23,7 @@ public class TreeViewAdapter<T extends TreeNode> extends RecyclerView.Adapter{
     private boolean expandAll;
     /*需要展开的层级*/
     private SparseBooleanArray expandLevel;
+    private final int levelOffset=1000;
 
     public TreeViewAdapter(Context context,int layoutId) {
         this.context=context;
@@ -55,8 +56,9 @@ public class TreeViewAdapter<T extends TreeNode> extends RecyclerView.Adapter{
 
     @Override
     public int getItemViewType(int position) {
-        T t = data.get(position);
-        return super.getItemViewType(position);
+        T node = data.get(position);
+        int itemType = node.level+levelOffset;
+        return itemType;
     }
 
     /****************************************************************************/
